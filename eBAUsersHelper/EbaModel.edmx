@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMPANIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
+          <Property Name="IMPORTSTATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANYOBJECTS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="COMPANY" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="COMPANY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSDEPARTMENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="MANAGERDEPARTMENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" />
+          <Property Name="MANAGERUSERID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OSGROUPCONTENT">
+          <Key>
+            <PropertyRef Name="GROUPID" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="GROUPID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="USERID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSGROUPS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSMANAGERKEYS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" />
+        </EntityType>
+        <EntityType Name="OSMANAGERS">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="MANAGERKEY" />
+          </Key>
+          <Property Name="USERID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MANAGERKEY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MANAGERUSERID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSPOSITIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="USERID" Type="nvarchar" MaxLength="50" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="IMPORTEDPOSCODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMPORTSTATUS" Type="int" />
+        </EntityType>
+        <EntityType Name="OSPROFESSIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" />
+        </EntityType>
+        <EntityType Name="OSPROPERTIES">
+          <Key>
+            <PropertyRef Name="OSID" />
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="OSID" Type="int" Nullable="false" />
+          <Property Name="PNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PORDER" Type="int" Nullable="false" />
+          <Property Name="PREQUIRED" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSPROPERTYTYPES">
+          <Key>
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="PNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PCAPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="PDESCRIPTION" Type="nvarchar" MaxLength="250" />
+          <Property Name="PTYPE" Type="int" Nullable="false" />
+          <Property Name="PDEFAULTVALUE" Type="nvarchar" MaxLength="1024" />
+          <Property Name="PPARAMS" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="OSPROPERTYVALUES">
+          <Key>
+            <PropertyRef Name="OSID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="OSID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PVALUE" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IMPORTSTATUS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSUSERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LASTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="250" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="int" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="EMPLOYEMENTSTART" Type="datetime" />
+          <Property Name="EMPLOYEMENTEND" Type="datetime" />
+          <Property Name="CATEGORY" Type="int" />
+          <Property Name="SEX" Type="int" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PROFESSION" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EBAModelStoreContainer">
+          <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANYOBJECTS" EntityType="Self.COMPANYOBJECTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSDEPARTMENTS" EntityType="Self.OSDEPARTMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSGROUPCONTENT" EntityType="Self.OSGROUPCONTENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSGROUPS" EntityType="Self.OSGROUPS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSMANAGERKEYS" EntityType="Self.OSMANAGERKEYS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSMANAGERS" EntityType="Self.OSMANAGERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSPOSITIONS" EntityType="Self.OSPOSITIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSPROFESSIONS" EntityType="Self.OSPROFESSIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSPROPERTIES" EntityType="Self.OSPROPERTIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSPROPERTYTYPES" EntityType="Self.OSPROPERTYTYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSPROPERTYVALUES" EntityType="Self.OSPROPERTYVALUES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OSUSERS" EntityType="Self.OSUSERS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COMPANIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IMPORTSTATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANYOBJECTS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="COMPANY" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="COMPANY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSDEPARTMENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MANAGERDEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" />
+          <Property Name="MANAGERUSERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OSGROUPCONTENT">
+          <Key>
+            <PropertyRef Name="GROUPID" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="GROUPID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSGROUPS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSMANAGERKEYS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OSMANAGERS">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="MANAGERKEY" />
+          </Key>
+          <Property Name="USERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MANAGERKEY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MANAGERUSERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSPOSITIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTEDPOSCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMPORTSTATUS" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OSPROFESSIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OSPROPERTIES">
+          <Key>
+            <PropertyRef Name="OSID" />
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="OSID" Type="Int32" Nullable="false" />
+          <Property Name="PNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PORDER" Type="Int32" Nullable="false" />
+          <Property Name="PREQUIRED" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSPROPERTYTYPES">
+          <Key>
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="PNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PCAPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PDESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PTYPE" Type="Int32" Nullable="false" />
+          <Property Name="PDEFAULTVALUE" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="PPARAMS" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OSPROPERTYVALUES">
+          <Key>
+            <PropertyRef Name="OSID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="PNAME" />
+          </Key>
+          <Property Name="OSID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PVALUE" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IMPORTSTATUS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OSUSERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="IMPORTSTATUS" Type="Int32" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="EMPLOYEMENTSTART" Type="DateTime" Precision="3" />
+          <Property Name="EMPLOYEMENTEND" Type="DateTime" Precision="3" />
+          <Property Name="CATEGORY" Type="Int32" />
+          <Property Name="SEX" Type="Int32" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROFESSION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EBAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" />
+          <EntitySet Name="COMPANYOBJECTS" EntityType="Self.COMPANYOBJECTS" />
+          <EntitySet Name="OSDEPARTMENTS" EntityType="Self.OSDEPARTMENTS" />
+          <EntitySet Name="OSGROUPCONTENT" EntityType="Self.OSGROUPCONTENT" />
+          <EntitySet Name="OSGROUPS" EntityType="Self.OSGROUPS" />
+          <EntitySet Name="OSMANAGERKEYS" EntityType="Self.OSMANAGERKEYS" />
+          <EntitySet Name="OSMANAGERS" EntityType="Self.OSMANAGERS" />
+          <EntitySet Name="OSPOSITIONS" EntityType="Self.OSPOSITIONS" />
+          <EntitySet Name="OSPROFESSIONS" EntityType="Self.OSPROFESSIONS" />
+          <EntitySet Name="OSPROPERTIES" EntityType="Self.OSPROPERTIES" />
+          <EntitySet Name="OSPROPERTYTYPES" EntityType="Self.OSPROPERTYTYPES" />
+          <EntitySet Name="OSPROPERTYVALUES" EntityType="Self.OSPROPERTYVALUES" />
+          <EntitySet Name="OSUSERS" EntityType="Self.OSUSERS" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EBAModelStoreContainer" CdmEntityContainer="EBAEntities">
+          <EntitySetMapping Name="COMPANIES">
+            <EntityTypeMapping TypeName="EBAModel.COMPANIES">
+              <MappingFragment StoreEntitySet="COMPANIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANYOBJECTS">
+            <EntityTypeMapping TypeName="EBAModel.COMPANYOBJECTS">
+              <MappingFragment StoreEntitySet="COMPANYOBJECTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSDEPARTMENTS">
+            <EntityTypeMapping TypeName="EBAModel.OSDEPARTMENTS">
+              <MappingFragment StoreEntitySet="OSDEPARTMENTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MANAGERDEPARTMENT" ColumnName="MANAGERDEPARTMENT" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+                <ScalarProperty Name="MANAGERUSERID" ColumnName="MANAGERUSERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSGROUPCONTENT">
+            <EntityTypeMapping TypeName="EBAModel.OSGROUPCONTENT">
+              <MappingFragment StoreEntitySet="OSGROUPCONTENT">
+                <ScalarProperty Name="GROUPID" ColumnName="GROUPID" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSGROUPS">
+            <EntityTypeMapping TypeName="EBAModel.OSGROUPS">
+              <MappingFragment StoreEntitySet="OSGROUPS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSMANAGERKEYS">
+            <EntityTypeMapping TypeName="EBAModel.OSMANAGERKEYS">
+              <MappingFragment StoreEntitySet="OSMANAGERKEYS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSMANAGERS">
+            <EntityTypeMapping TypeName="EBAModel.OSMANAGERS">
+              <MappingFragment StoreEntitySet="OSMANAGERS">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="MANAGERKEY" ColumnName="MANAGERKEY" />
+                <ScalarProperty Name="MANAGERUSERID" ColumnName="MANAGERUSERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSPOSITIONS">
+            <EntityTypeMapping TypeName="EBAModel.OSPOSITIONS">
+              <MappingFragment StoreEntitySet="OSPOSITIONS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IMPORTEDPOSCODE" ColumnName="IMPORTEDPOSCODE" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSPROFESSIONS">
+            <EntityTypeMapping TypeName="EBAModel.OSPROFESSIONS">
+              <MappingFragment StoreEntitySet="OSPROFESSIONS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSPROPERTIES">
+            <EntityTypeMapping TypeName="EBAModel.OSPROPERTIES">
+              <MappingFragment StoreEntitySet="OSPROPERTIES">
+                <ScalarProperty Name="OSID" ColumnName="OSID" />
+                <ScalarProperty Name="PNAME" ColumnName="PNAME" />
+                <ScalarProperty Name="PORDER" ColumnName="PORDER" />
+                <ScalarProperty Name="PREQUIRED" ColumnName="PREQUIRED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSPROPERTYTYPES">
+            <EntityTypeMapping TypeName="EBAModel.OSPROPERTYTYPES">
+              <MappingFragment StoreEntitySet="OSPROPERTYTYPES">
+                <ScalarProperty Name="PNAME" ColumnName="PNAME" />
+                <ScalarProperty Name="PCAPTION" ColumnName="PCAPTION" />
+                <ScalarProperty Name="PDESCRIPTION" ColumnName="PDESCRIPTION" />
+                <ScalarProperty Name="PTYPE" ColumnName="PTYPE" />
+                <ScalarProperty Name="PDEFAULTVALUE" ColumnName="PDEFAULTVALUE" />
+                <ScalarProperty Name="PPARAMS" ColumnName="PPARAMS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSPROPERTYVALUES">
+            <EntityTypeMapping TypeName="EBAModel.OSPROPERTYVALUES">
+              <MappingFragment StoreEntitySet="OSPROPERTYVALUES">
+                <ScalarProperty Name="OSID" ColumnName="OSID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PNAME" ColumnName="PNAME" />
+                <ScalarProperty Name="PVALUE" ColumnName="PVALUE" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OSUSERS">
+            <EntityTypeMapping TypeName="EBAModel.OSUSERS">
+              <MappingFragment StoreEntitySet="OSUSERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IMPORTSTATUS" ColumnName="IMPORTSTATUS" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="EMPLOYEMENTSTART" ColumnName="EMPLOYEMENTSTART" />
+                <ScalarProperty Name="EMPLOYEMENTEND" ColumnName="EMPLOYEMENTEND" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="PROFESSION" ColumnName="PROFESSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
